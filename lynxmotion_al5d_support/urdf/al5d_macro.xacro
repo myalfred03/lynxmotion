@@ -3,30 +3,26 @@
 
   <xacro:property name="M_PI" value="3.14159"/>
 
-  <property name="base_height" value="0.043" />
-  <property name="base_radius" value="0.048" />
-  <property name="link1_height" value="0.006" />
-  <property name="link1_radius" value="0.048" />
-  <property name="link2_offset" value="0.022" />
-  <property name="link2_length" value="0.14605" />
-  <property name="link3_length" value="0.187325" />
-  <property name="link4_length" value="0.032" />
-  <property name="gripper_offset" value="0.016" />
+ <xacro:property  name="base_height" value="0.043" />
+ <xacro:property  name="base_radius" value="0.048" />
+ <xacro:property name="link1_height" value="0.006" />
+ <xacro:property name="link1_radius" value="0.048" />
+ <xacro:property  name="link2_offset" value="0.022" />
+  <xacro:property name="link2_length" value="0.14605" />
+  <xacro:property name="link3_length" value="0.187325" />
+  <xacro:property  name="link4_length" value="0.032" />
+ <xacro:property  name="gripper_offset" value="0.016" />
   
-  <xacro:macro name="lynxmotion_al5d" params="prefix parent_link *origin">
+  <xacro:macro name="lynxmotion_al5d" params="prefix">
     <!-- attach -->
-    <joint name="arm_base_joint" type="fixed">
-      <insert_block name="origin" />
-      <parent link="${parent_link}"/>
-      <child link="${prefix}base_link" />
-    </joint>
+
     <!-- links -->
     <link name="${prefix}base_link">
       <visual>
         <origin xyz="0 0 ${base_height/2}" rpy="0 0 0"/>
-        <geometry>
-          <cylinder length="${base_height}" radius="${base_radius}"/>
-        </geometry>
+       <geometry>
+					<mesh filename="package://lynxmotion_al5d_support/meshes/base_1.dae"/>
+				</geometry>
         <material name="black">
           <color rgba="0 0 0 1"/>
         </material>
@@ -41,9 +37,9 @@
     <link name="${prefix}link_1">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <geometry>
-          <cylinder length="${link1_height}" radius="${link1_radius}"/>
-        </geometry>
+       <geometry>
+					<mesh filename="package://lynxmotion_al5d_support/meshes/link_11.dae"/>
+				</geometry>
         <material name="black">
           <color rgba="0 0 0 1"/>
         </material>
@@ -58,9 +54,9 @@
     <link name="${prefix}link_2">
       <visual>
         <origin xyz="${link2_length/2} 0 0" rpy="0 0 0"/>
-        <geometry>
-          <box size="${link2_length-0.02} 0.02 .02"/>
-        </geometry>
+              <geometry>
+					<mesh filename="package://lynxmotion_al5d_support/meshes/link_2.dae"/>
+				</geometry>
         <material name="silver">
           <color rgba="0.8 0.8 0.8 1"/>
         </material>
@@ -75,9 +71,9 @@
     <link name="${prefix}link_3">
       <visual>
         <origin xyz="${link3_length/2} 0 0" rpy="0 0 0"/>
-        <geometry>
-          <box size="${link3_length-0.02} 0.02 0.02"/>
-        </geometry>
+       <geometry>
+					<mesh filename="package://lynxmotion_al5d_support/meshes/link_3.dae"/>
+				</geometry>
         <material name="silver">
           <color rgba="0.8 0.8 0.8 1"/>
         </material>
@@ -109,9 +105,9 @@
     <link name="${prefix}gripper">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <geometry>
-          <box size="0.05 0.05 0.05"/>
-        </geometry>
+              <geometry>
+					<mesh filename="package://lynxmotion_al5d_support/meshes/gripper.dae"/>
+				</geometry>
         <material name="black">
           <color rgba="0 0 0 1"/>
         </material>
